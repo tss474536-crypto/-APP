@@ -1,4 +1,4 @@
-# 诗诗课表 Android
+# 诗诗课表
 
 一个真正的原生 Android 应用，不是网页套壳。使用 Kotlin + Jetpack Compose 编写，第一版完全本地运行，不需要服务器。
 
@@ -13,18 +13,6 @@
 - 四季本地动态背景：春日花瓣、夏日海浪、秋日落叶、冬日飘雪
 - 从手机一次导入多段风景视频，支持随机轮播或固定播放
 - 全部个人数据保存在手机本地，可导出/恢复 JSON 备份
-
-## 明天怎么生成 APK
-
-1. 安装最新版稳定版 Android Studio，安装向导里保留 Android SDK 和内置 JDK。
-2. 解压本项目，用 Android Studio 选择 **Open**，打开 `shishi-schedule-android` 文件夹。
-3. 等待右下角 Gradle Sync 和依赖下载完成。第一次需要联网。
-4. 如果 Android Studio 询问 Gradle 版本，选择 Gradle 8.9；JDK 选择 Android Studio 自带的 JDK 17。
-5. 先连接手机或启动模拟器，点击运行，检查页面和课表。
-6. 给同学安装的测试包：菜单 **Build → Generate Bundle(s) / APK(s) → Generate APK(s)**。
-7. 生成位置：`app/build/outputs/apk/debug/app-debug.apk`。把这个 APK 发给同学即可；对方需要允许“安装未知应用”。
-
-不要直接把顶部的运行按钮生成物拿去分享；Android 官方说明那种构建可能带 `testOnly`，适合 ADB 安装。菜单生成的 debug APK 已带调试签名，可以直接安装。
 
 ## 正式发布版本
 
