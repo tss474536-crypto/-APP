@@ -37,7 +37,7 @@ data class SceneSettings(
 
 data class AppSnapshot(
     val profile: UserProfile = UserProfile(),
-    val semesterName: String = "2026-2027 第1学期",
+    val semesterName: String = "2026 秋季学期",
     val semesterStart: String = "2026-09-07",
     val courses: List<Course> = defaultCourses(),
     val journals: List<JournalEntry> = emptyList(),

@@ -381,15 +381,13 @@ fun SettingsScreen(state: AppSnapshot, palette: Palette, padding: PaddingValues,
             Button(onClick = { model.saveSemester(semesterName, semesterStart); notice = "学期设置已保存" }) { Text("保存学期") }
         }
         SettingsCard("动态风景") {
-            Text("季节模式使用流畅的本地动画；也可以导入多段海浪、森林、晚霞或雪景视频。")
+            Text("内置 6 段海浪、海岸、秋叶、雨景和雪林，可按季节或全部轮播；也可以导入自己的风景视频。")
             Row(horizontalArrangement = Arrangement.spacedBy(7.dp)) {
-                listOf("季节", "随机视频", "固定视频").forEach { mode ->
+                listOf("季节", "全部风景").forEach { mode ->
                     FilterChip(
                         selected = state.scenes.mode == mode,
-                        enabled = mode == "季节" || state.scenes.videoUris.isNotEmpty(),
                         onClick = {
-                            val fixed = state.scenes.fixedVideoUri.ifBlank { state.scenes.videoUris.firstOrNull().orEmpty() }
-                            model.saveScenes(state.scenes.copy(mode = mode, fixedVideoUri = fixed))
+                            model.saveScenes(state.scenes.copy(mode = mode))
                         },
                         label = { Text(mode) }
                     )
@@ -401,6 +399,11 @@ fun SettingsScreen(state: AppSnapshot, palette: Palette, padding: PaddingValues,
             }
             if (state.scenes.videoUris.isNotEmpty()) {
                 Text("已导入 ${state.scenes.videoUris.size} 个视频")
+                FilterChip(
+                    selected = state.scenes.mode == "随机视频",
+                    onClick = { model.saveScenes(state.scenes.copy(mode = "随机视频")) },
+                    label = { Text("轮播我的视频") }
+                )
                 state.scenes.videoUris.forEachIndexed { index, uri ->
                     Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
                         Text("视频 ${index + 1}", Modifier.weight(1f))
